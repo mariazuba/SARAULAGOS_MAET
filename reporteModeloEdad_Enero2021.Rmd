@@ -1,0 +1,216 @@
+---
+lang: es
+output: pdf_document
+toc: FALSE
+header-includes:
+- \usepackage{fancyhdr}
+- \usepackage{graphicx}
+- \usepackage{parskip}
+- \pagestyle{fancy}
+- \usepackage{geometry}
+- \geometry{top=1.5cm, bottom=1cm, left=2.5cm, right=2.5cm}
+- \usepackage{helvet}
+- \renewcommand{\familydefault}{\sfdefault}
+
+- \newcommand{\sietepuntos}{\fontsize{7pt}{\baselineskip}\selectfont}
+- \newcommand{\cincopuntos}{\fontsize{6pt}{\baselineskip}\selectfont}
+
+- \addtolength{\headheight}{4.5\baselineskip}
+- \setlength{\headheight}{70pt}
+- \setlength{\footskip}{5pt}
+- \setlength{\textheight}{658pt}
+- \fancyhead[CO,CE]{\includegraphics[height=1.5cm]{logoifop.png}\\ \sietepuntos INSTITUTO DE FOMENTO PESQUERO / DIVISION INVESTIGACION PESQUERA}
+- \fancyhead[LO,LE]{}
+- \fancyhead[RO,RE]{}
+
+- \renewcommand{\headrulewidth}{0.5pt}
+- \fancyfoot[C]{\cincopuntos \thepage \\ \vspace{-0.2cm} ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ \\ \vspace{-0.2cm} \cincopuntos CONVENIO DE DESEMPEÑO 2020 IFOP/SUBSECRETARÍA DE ECONOMíA Y EMT \\ \vspace{-0.1cm} REPORTE DE TALLER DE DATOS Y MODELOS DE PESQUERÍAS DE PEQUEÑOS PELÁGICOS, ENERO 2021}
+---
+
+\pagebreak
+
+# Implementación de un modelo anual con dinámica en edad e información en tallas (MAET).
+
+Uno de los objetivos del Proyecto "Estatus y Posibilidades de Explotación Biológicamente
+Sustentables de los Principales Recursos Pesqueros Nacionales año 2018" se refiere al Programa de Mejoramiento Continuo de la Calidad de Asesoría Científica (PMCCAC,) el cual se enfoca en sintetizar las brechas de datos, información y conocimiento en relación con la situación general de una
+pesquería y de esta forma una sistematización para el desarrollo continuo de la asesoría científica. 
+
+Una importante fuente de información, que aporta al mejoramiento, lo constituye la revisión por
+pares, la cual realiza una revisión de todo el proceso de evaluación de un recurso por parte de expertos externos e independientes quienes reportan una serie de observaciones y recomendaciones de corto y mediano plazo. La evaluación de stock de sardina austral (*Sprattus fuegensis*) de aguas interiores de la Isla de Chiloé, fue objeto de este proceso de revisión, cuyos detalles están contenidos en el reporte técnico Ernst *et al*. (2015). Una de las recomendaciones de dicho reporte, fue considerar un modelo de evaluación
+alternativo al actualmente en uso.
+
+El enfoque de modelación utilizado hasta ahora, corresponde a un modelo talla estructurado (Sullivan *et al*. 1990), quien modela la abundancia poblacional en función de la probabilidad de los individuos de crecer de una talla a la siguiente.
+
+Como parte de las tareas de largo plazo y con el objetivo de dar respuesta a la recomendación de la revisión por pares, IFOP ha estado trabajando en la implemntación de un modelo con observaciones en tallas y dinámica en edades (Deriso *et al*. 1985), coherente con los procesos biológico-pesqueros. Lo anterior con la finalidad de generar un modelo base que pueda ser contrastado con el actual modelo en uso. Para poder realizar el contraste entre el actual modelo y el modelo alternativo se ha estado desarrollando un modelo anual con información en tallas y dinámica en edad en año calendario (MAET) para el período 2002-2020. El actual reporte resume los resultados de los talleres internos realizado por
+IFOP durante los primeros meses del año en curso y algunas recomendaciones del Comité científico del mes de marzo.
+
+El modelo alternativo propuesto, se basa en el análisis estadístico de la dinámica de estructuras de tallas anual de la flota (período 2002-- 2020) y de los cruceros acústicos. Se utilizan también como índices, los desembarques totales (período 2006 -- 2020), biomasa estimada por el crucero y la captura por unidad de esfuerzo (CPUE) estandarizada. Las fuentes de información utilizados en la evaluación de sardina asutral se resumen en la **Tabla 1**.
+
+El modelamiento de la dinámica de la sardina austral en aguas interiores de la Región de Los Lagos, es en año calendario, vale decir que el cumpleaños ocurre a inicios de año (inicios de enero), por lo cual el desove (dt) al ser establecido a mediados de año, corresponde a un valor de 0,58. De igual manera,
+el crucero de evaluación directa, representa a la población en el período del año en que se realiza (dt variable). Por otra parte, el peso medio es empleado para generar las estimaciones de biomasa acústica tanto del crucero de verano y otoño, desembarques y biomasa total. Los principales supuestos del modelo
+alternativo propuesto se resumen en la **Tabla 2**.
+
+El método es empleado bajo un enfoque estructurado en edades que utiliza información en tallas agrupada en año calendario y que incorpora los siguientes elementos:
+
+\+ Modelo de dinámica poblacional estructurada por edad.
+
+\+ Modelos de las observaciones y penalizaciones a priori que permiten relacionar el modelo de dinámica con las observaciones.
+
+\+ Identificación de la estructura del error a través de funciones de log-verosimilitud negativas.
+
+\+ Proceso de estimación de los parámetros desconocidos del modelo de dinámica a través de un algoritmo que minimiza la función objetivo total, contrastando las observaciones con las
+estimaciones deducidas del modelo de dinámica.
+
+Adicionalmente, la **Tabla 3** muestra la comparación de estructura, datos, parámetros y supuestos entre el modelo actual (MAEE) y alternativo (MAET).
+
+Los resultados indican Ambos modelos: MATT (base) y MAET(alternativo), reproducen la tendencia general de los índices y no parecen mostrar diferencias importantes, excepto en la CPUE, donde el modelo alternativo, parece ajustar de mejor manera algunos años respecto del modelo base actual. (**Figura 1**). Esto queda de manifiesto en el análisis de residuos. (**Figura 2**). En relación al ajuste del modelo a la información de composiciones de tallas (**Figuras 3 y 4**), se observa que el modelo alternativo parece ser más eficiente en capturar la bimodalidad en la estructura de longitudes observada durante algunos años en la flota y las
+fuertes modas de los cruceros acústicos.
+
+Los indicadores poblacionales se muestan en la **Figura 5, donde** las estimaciones de las variables poblacionales de biomasa, reclutamientos y mortalidad por pesca obtenidas con el enfoque de modelación
+propuesto. Se compara con los resultados de la última evaluación de stock a través del modelo talla-talla.
+
+Respecto al estatus, se presentan los PBR y estatus para el año 2020 comparativamente entre el modelo base y modelo alternativo (**Tabla 4**). El modelo alternativo muestra valores superiores en términos de Bo y Brms. Sin embargo, el nivel de F que genera el MRS es similar entre ambas aproximaciones. El nivel de reducción del stock BD/BD~MRS~ en biomasa es mayor en el modelo alternativo, aunque coincide en términos de F (**Figura 6**). La **Figura 7,** Muestra comparativamente el diagrama de fases de explotación que resulta de la evaluación a través de análisis actual (modelo base) y el modelo alternativo. Ambos enfoques sitúan al stock de sardina austral en una condición de plena explotación durante el año en curso.
+
+En relación a la captura biológicamente aceptable El valor de CBA resultante desde el modelo base y alternativo se muestra en la **Tabla 5.** Se aprecian mínimas diferencias entre ambas aproximaciones, siendo tales diferencias estadísticamente no significativas. La densidad de probabilidad de la CBA 2020 para el percentil del 50% muestra coincidencia entre ambos enfoques de modelación (**Figura 8**). La diferencia gráfica para cada percentil de probabilidad es también mínima.
+
+Hasta la fecha el enfoque modelación alternativo muestra algunas ventajas por sobre el actual modelo:
+
+\- Mayor flexibilidad en el ajuste de CPUE y tallas (rescata modalidad en la estructura de tamaños).
+
+\- Mejor desempeño en el ajuste de tallas mayores
+
+\- Mejora de manera relativa el perfil de verosimilitud de Ro.
+
+\- El modelo es mayormente utilizado para modelar la dinámica de poblaciones de peces.
+
+\- No genera inconvenientes en el procedimiento de manejo (sin cambio relevantes en estatus ni CBA)
+
+Sin embargo, todavía se aprecian algunas dificultades que continúan presentes ambos enfoques de
+modelación como el cambio de escala en el patrón retrospectivo y un en perfil de verosimilitud poco interpretable aún. Se propone continuar avanzando en el enfoque de modelación alternativo de manera de superar estas dificultades. La planificación en el avance hacia un nuevo enfoque de modelación contempla un taller de trabajo interno en el mes de enero de 2021 donde se pretende explorar por
+ejemplo:
+
+\- Reestimar coeficientes de variación (CV).
+
+\- Reestimar tamaños de muestras para información de composición de longitudes flota y cruceros (Francis, Ianelly).
+
+\- capturabilidad del crucero (explorar bloques acordes con la dinámica).
+
+\- Matriz edad-talla.
+
+\- Revisión de la selectividad.
+
+**Reporte cct-pp agosto 2020:**
+
+se presentó la transición entre un modelo anual con dinámica en tallas (base actual) a un modelo anual con dinámica en edad como parte del programa de mejoramiento continuo. Se presentaron los argumentos teóricos que respaldan la transición a un modelo con dinámica en edad los que se basan en:
+
+i) los modelos estructurados por talla requieren un análisis cuidadoso de la matriz de transición del crecimiento para modelar el proceso de sobrevivencia de las cohortes;
+ii) se podrían producir efectos de confusión en la estimación de algunos parámetros bajo una dinámica en tallas;
+iii) la población podría ser más dinámica que la real. Esto implica que en condiciones de agotamiento también podría recuperarse más rápido que lo real.
+
+Se presentó un análisis comparativo entre modelos, relativo a la bondad de ajuste respecto a índices y las estructuras de tallas, las tendencias de las principales variables poblacionales, el cálculo de los puntos biológicos de referencia, la tendencia de los indicadores de estatus y finalmente la captura biológicamente aceptable. El diagnóstico sugiere que en el modelo con dinámica en edad:
+
+i) las variables poblacionales muestran magnitudes y tendencias similares;
+ii) se logra mayor flexibilidad para ajustar la CPUE y la estructura de tallas (bimodalidad)
+iii) se obtiene un mejor desempeño en el ajuste de tallas mayores;
+iv) existe una mejora importante en el perfil de verosimilitud;
+v) no genera inconvenientes en el procedimiento de manejo (sin cambio relevantes en estatus ni CBA)
+
+No obstantelos resultados alentadores, el modelo alternativo no logra sortear el problema del reescalamiento de la biomasa desovante en el análisis retrospectivo observado igualmente en el modelo base.
+
+Dado lo anterior, el Comité acuerda inicial una fase de transición hacia la toma de decisión con el mismo, por el período de un año, en el que se espera responder inquietudes a usuarios y testear el proceso de toma de decisiones. Sin perjuicio de lo anterior, previo a su adopción se deberá implemetar las mejoras planteadas.
+
+La propuesta de trabajo hacia las mejoras contempla:
+
+i) reestimar coeficientes de variación (CV); 
+ii) reestimar tamaños de muestra para información de composición de tallas de la flota y cruceros (Francis y Ianelli)
+iii) capturabilidad del crucero (explorar bloques acordes con la dinámica);
+iv) evaluar en detalle la matriz de transición talla-edad
+v) revisión de la selectividad
+
+Estos temas deberán ser abordados en un taller de trabajo interno programado para enero 2021.
+
+**Antecedentes de Aranis et al 2019. Informe final de junio 2020**
+
+La sardina austral presentó una reducción en la captura y los rendimientos de pesca en 2018, producto de una menor abundancia y disponibilidad del recurso en la zona vinculado a una menor oferta de alimento y a anomalía térmica levemente negativas, lo cual tuvo un impacto importante a nivel sectorial. En el año 2019, experimentó una fuerte reducción en sus cuotas de captura y registró un mayor desembarque en relación al año anterior, el peor de la década. La sardina austral sigue siendo el principal recurso y sostiene la pesquería en aguas interiores con aporte del 82%.
+
+La marcada estacionalidad de la concentración de biomasa fitoplanctonica (clorofila a) y TSM con máximos en primavera-verano que se distribuyen hasta los 42,5ºS se traduce en que los sectores seno del Reloncavi, fiordo del Reloncaví y golfo de Ancud constituyen áreas de alta productividad, lo cual resulta relevante en la alimentación ya que sustentan al zooplancton, presa importante de sardina austral. Además, se debe considerar que los cambios ambientales en distintas escalas temporales podrían gatillar cambios en las tácticas reproductivas como el almacenamiento de energía en períodos de alta producción de fitoplancton (Leal *et al*., 2009), o bien afectar la fecundidad, la supervivencia de los huevos y larva, provocando también un decaimiento del reclutamiento y del stock de biomasa disponible (Chávez *et al*., 2003).
+
+La estructura de edad de sardina austral para el año biológico 2018-2019 muestra dominio de los GE I y II, lo que deja en evidencia una falla o disminución del reclutamiento, igual a lo ocurrido el año anterior. Desde hace seis años se viene apreciando en este recurso, que a un año de buen reclutamiento, como los ocurridos el 2016-2017, le siguen dos años con falla o disminución de este, reflejado en una exigua captura del GE 0.
+
+El proceso reproductivo de la sardina austral, se esboza por el período de reposo desde el verano hasta mediados de otoño, manifestando desde abril ovarios en desarrollo temprano con ovocitos con deposición de vitelo, luego el inicio del desove se detecta a fines de invierno, alcanzando el máximo desarrollo en primavera e inicios del verano, con el desove principal entre octubre y noviembre. La mayor atresia ovárica reposo reproductivo, se observa desde verano hasta inicios de otoño.
+
+
+El factor de condición (Fk), confirma alometrías en general positivas que informan un crecimiento ponderal "saludable" durante todo el año privilegiando crecimiento en peso sobre talla. De acuerdo con esto, se infiere que no existen evidencias que la alimentación y oferta ambiental sea una limitante para el bienestar poblacional.
+
+En aguas interiores de Chiloé, la pesquería pelágica transita por una condición de inestabilidad, en cuanto al nivel de desembarque y los rendimientos de pesca, aspecto que fue concomitante a condiciones ambientales desfavorables durante algunos meses del 2019. Esto, se traduce en efectos adversos para generar una rentabilidad sostenida, en una actividad que no cuenta con recursos alternativos relevantes.
+
+La estructura de edad de sardina austral para el año biológico 2018-2019 muestra la mayor captura de los GE I y II, lo que deja en evidencia una falla o disminución de éste, reflejado en una exigua captura del GE cero.
+
+El proceso reproductivo de la sardina austral, se desplegó desde el período de reposo en verano hasta mediados de otoño, pero manifestando desde abril ovarios en desarrollo temprano con ovocitos con deposición de vitelo, luego el inicio del desove se detectó a fines de invierno, alcanzando el máximo desarrollo en primavera e inicios del verano, luego el desove principal ocurrió entre octubre y noviembre. La mayor atresia ovárica que corresponde al reposo reproductivo, se observó desde verano hasta inicios de otoño.
+
+En primavera y verano, los pequeños pelágicos tienden a engordar y acumular la energía necesaria para crecer y posteriormente canalizarla para el inicio de la reproducción, como también para la emigración. Debe considerarse que, según la estación del año, el hábitat, la madurez gonadal, el sexo, la dieta y el llenado del estómago, la salud y los métodos de la preservación puede influir en la relación longitud-peso (Amador et al. 2012). Se descarta que la baja del bienestra (Fk) sea atribuida al proceso reproductivo, como también a la presencia de juveniles bajo la TMM como de adultos, ya que los índices no se correlacionan demográficamente con los procesos biológicos para el año 2019; situación que podría estar asociada a factores abióticos (temperatura y fotoperíodo), que afecta a los factores bióticos (abundancia y calidad del alimento).
+
+
+
+\pagebreak
+
+
+# ANEXO FIGURAS
+
+**Figura 1.** Ajuste del modelo base (MATT) y alternativo (MAET) a los valores de biomasa del crucero, CPUE y desembarques de sardina austral Región de Los Lagos. Las barras corresponden al intervalo de confianza asintótico y el círculo al valor del estimador central.
+
+**Figura 2.** Análisis de los residuos para cada índice del modelo base (MATT) y alternativo (MAET) a los valores de biomasa del crucero, CPUE y desembarques de **sardina austral Región de Los Lagos**.
+
+**Figura 3**. Ajuste de ambos modelos a las composiciones de tallas de las capturas de sardina austral Región de Los Lagos. Línea negra (modelo base actual), línea roja (modelo alternativo).
+
+**Figura 4**. Ajuste de ambos modelos a las composiciones de tallas del crucero de sardina
+austral Región de Los Lagos. Línea negra (modelo base actual), línea roja (modelo alternativo).
+
+**Figura 5.** Comparación de los reclutamientos, mortalidad por pesca, biomasa total y desovante entre el modelo base (*MATT*) y alternativo (*MAET*) de sardina austral Región de Los Lagos. Línea negra (modelo base actual), línea roja (modelo alternativo).
+
+**Figura 6.** Comparación de la razón BD/BD~RMS~, distribución de probabilidad de BD~last~/BD~RMS~. Razón F/F~RMS~
+y la distribución de probabilidad F~last~/F~RMS~. Modelo base (línea negra) y alternativo (línea roja).
+
+**Figura 7.** Diagrama de fases de explotación de la biomasa desovante respecto de la mortalidad por pesca de la evaluación del modelo base (panel superior) y alternativo (panel inferior). Los ejes están estandarizados a los valores que generan el RMS proxy. Cruz azul corresponde a los intervalos de confianza de la razón BD/BD~RMS~ y F/F~RMS~.
+
+**Figura 8.** Densidad de probabilidad de la CBA 2020 para el percentil del 50% (panel izquierdo) y variación de la CBA para los percentiles de probabilidad entre el 10% y 50% (panel derecho) en la pesquería
+de sardina austral en la Región de Los Lagos estimada con el modelo base y alternativo.
+
+\pagebreak
+
+# ANEXO TABLAS
+
+**Tabla 1.**
+
+Resumen de los datos e información de entrada al modelo anual con información a la talla (MAET) de sardina austral Región de Los Lagos.
+
+**Tabla 2.**
+
+Resumen de los principales supuestos del modelo de evaluación anual  con información a la talla (MAET) asociados a los datos observados. sardina austral Región de Los Lagos.
+
+**Tabla 3.**
+
+Comparación de estructura, datos, parámetros y supuestos entre el modelo actual (MATT) y alternativo
+(MAET) sardina austral Región de Los Lagos.
+
+**Tabla 4.**
+
+Comparación de variables poblacionales y Puntos Biológicos de Referencia, BD/BDrms y F/Frms 2020 entre modelo base (MATT) y alternativo (MAET) de sardina austral Región de Los Lagos.
+
+**Tabla 5.**
+
+CAB 2020 del modelo base y alternativo para percentiles de probabilidad entre el 10% y 50% en la pesquería
+de sardina austral Región de Los Lagos
+
+
+
+
+
+
+
+
+
+
+
+
+
